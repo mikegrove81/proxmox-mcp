@@ -1,0 +1,18 @@
+{
+    "proxmox_host": "192.168.1.50",
+    "proxmox_port": 8006,
+    "proxmox_user": "root@pam",
+    "proxmox_token_name": "mcp",
+    "proxmox_token_value": "paste-your-token-value-here",
+    "verify_ssl": false,
+    "node_name": "pve",
+
+    "ssh_host": "192.168.1.50",
+    "ssh_port": 22,
+    "ssh_user": "root",
+    "ssh_key_path": "~/.ssh/id_ed25519",
+
+    "_note_ssh": "Use ssh_key_path for key-based auth (recommended). For password auth instead, remove ssh_key_path and add: 'ssh_password': 'yourpassword'",
+    "_note_token": "Get the token value from Proxmox UI: Datacenter > Permissions > API Tokens > Add. See README for full steps.",
+    "_note_node": "node_name is 'pve' by default. Check yours at the top-left of the Proxmox web UI."
+}
