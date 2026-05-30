@@ -66,7 +66,7 @@ Open a work session by syncing the local repo with remote and loading session co
 6. **Auto-update core skills (non-home-dev repos only)** — if the current repo is NOT `home-dev`:
    - Resolve source: `{repoRoot}/home-dev` (where `{repoRoot}` = parent directory of the current repo)
    - If the source doesn't exist, skip silently (user may be on a machine without it)
-   - Pull latest in source: `git -C {source-path} pull`
+   - **Do NOT pull home-dev** — assume it is current on disk
    - Compare each file in the core manifest (see `/update-core` skill) between source and current repo
    - If any files differ, show a brief notice:
      ```
@@ -106,6 +106,7 @@ What are we working on today?
 - **Load context on demand.** Working-state is pre-injected; pull open-threads and related files only after the user states their task.
 - **If `git push` fails** (permissions, network), tell the user plainly and suggest retrying. Never attempt force-push.
 - **Do not auto-resolve conflicts in skill files or CLAUDE.md** — these are structural files where a bad merge can break the persona. Always ask.
+- **Do not `git pull` home-dev from a child repo.** home-dev is always current on disk. Pulling it adds network dependency and slows startup.
 
 ## Interface
 
