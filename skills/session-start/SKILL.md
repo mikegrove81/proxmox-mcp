@@ -1,5 +1,5 @@
 ---
-name: start
+name: session-start
 description: "Open a work session by syncing git state and loading context. Use when the user says '/start', 'start session', 'open session', 'begin session', 'pick up where I left off', or at the start of any new conversation. Pulls remote changes, detects uncommitted local work, resolves trivial merge conflicts, then runs the full Session Start Sequence."
 categories:
   - session-lifecycle
@@ -29,7 +29,7 @@ Open a work session by syncing the local repo with remote and loading session co
 > **Pre-injected state at session open** (resolved before Claude reads this skill):
 > - Uncommitted changes: `!`git status --short``
 > - Unpushed commits: `!`git log --oneline origin/master..HEAD 2>/dev/null || echo "none"``
-> - Working state snapshot: `!`head -20 memory/working-state.md 2>/dev/null || echo "no working state found"``
+> - Working state snapshot: `!`head -20 .claude/memory/working-state.md 2>/dev/null || echo "no working state found"``
 
 1. **Identify the user** — resolve username from pre-injected `git config user.name` output above, map to team profile in CLAUDE.md. Ask if ambiguous.
 
@@ -45,8 +45,8 @@ Open a work session by syncing the local repo with remote and loading session co
 
 4. **Pull remote changes** — `git pull`. Handle merge outcomes:
    - **Clean pull**: proceed
-   - **Trivial conflicts** (non-overlapping edits, append-only files like changelog.md): auto-resolve
-   - **Ambiguous conflicts**: stop, show the conflict markers, ask the user which version to keep
+   - **Trivial conflicts** (non-overlapping edits, append-only files like changelog.md): auto-resolve. Use `git checkout --theirs` for changelog.md specifically (append-only, last-write-wins by design).
+   - **Ambiguous conflicts**: stop, show the conflict markers, ask the user which version to keep.
 
 5. **Report what changed** — show `git log --oneline` of new commits pulled and `git diff --stat` of what changed. Summarize in plain language.
 
@@ -61,34 +61,20 @@ Open a work session by syncing the local repo with remote and loading session co
    │  {one-line summary from commit message}      │
    └─────────────────────────────────────────────┘
    ```
-   This is informational only — no action needed. The updated skills are already active.
+   This is informational only — no action needed from the user. The updated skills are already active.
 
-6. **Auto-update core skills (non-home-dev repos only)** — if the current repo is NOT `home-dev`:
-   - Resolve source: `{repoRoot}/home-dev` (where `{repoRoot}` = parent directory of the current repo)
-   - If the source doesn't exist, skip silently (user may be on a machine without it)
-   - **Do NOT pull home-dev** — assume it is current on disk
-   - Compare each file in the core manifest (see `/update-core` skill) between source and current repo
-   - If any files differ, show a brief notice:
-     ```
-     ┌─────────────────────────────────────────────┐
-     │  Core skills have updates from home-dev      │
-     │  session-start: changed, session-wrap: changed│
-     └─────────────────────────────────────────────┘
-     ```
-   - Auto-apply the updates (copy changed files, create directories if needed)
-   - Commit with `core: auto-updated from home-dev`
-   - If nothing differs, skip silently
+6. **Detect stale working-state** — if `.claude/memory/working-state.md` has an `updated` date older than today, ask: "Your last session was on {date}. Continue that work or start fresh?" Either way, working-state gets overwritten during this session's work.
 
-7. **Detect stale working-state** — if `memory/working-state.md` has an `updated` date older than today, ask: "Your last session was on {date}. Continue that work or start fresh?"
-
-8. **Lazy context load** — the pre-injected snapshot is enough to orient; load more on demand:
+7. **Lazy context load** — the pre-injected snapshot is enough to orient; load more on demand:
    - Working-state is already pre-injected above — extract the current topic from it
    - **Ask:** "Git synced. Last working on: [topic]. What are we working on today?"
-   - Load additional context **only after the user responds**: open-threads, related files — on demand based on their stated task, not upfront
+   - Load additional context **only after the user responds**: open-threads, related files — on demand based on their stated task, not upfront.
 
-9. **Set permission mode** — Ask: "Want hands-free mode? Run `/permissions bypassPermissions` now to skip all prompts." Wait for the user to confirm before proceeding.
+8. **Set permission mode** — Ask: "Want hands-free mode? Run `/permissions bypassPermissions` now to skip all prompts." Wait for the user to confirm before proceeding.
 
-10. **Report ready state** — brief status after context is loaded.
+9. **Report ready state** — brief status after context is loaded.
+
+10. **Auto-clear (rules-driven)** — Check `.claude/rules/start-auto-clear.md`. If present and the current user matches, ensure working-state.md is current on disk, then suggest prompt `/clear` so the user can reset the conversation.
 
 ## Output Format
 
