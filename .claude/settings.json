@@ -3,24 +3,50 @@
     "PreCompact": [
       {
         "matcher": "",
-        "hooks": [{"type": "command", "command": "bash .claude/hooks/pre-compact.sh"}]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/pre-compact.sh"
+          }
+        ]
       }
     ],
     "PreToolUse": [
       {
         "matcher": "Bash",
-        "hooks": [{"type": "command", "command": "bash .claude/hooks/guard-destructive.sh", "statusMessage": "Checking for destructive operations..."}]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/guard-destructive.sh",
+            "statusMessage": "Checking for destructive operations..."
+          }
+        ]
       },
       {
         "matcher": "mcp__sql__sql_execute_ddl|mcp__sql__sql_execute|mcp__sql__sql_execute_proc|mcp__sql__sql_query|mcp__sql__sql_query_json|mcp__sql__sql_list_tables|mcp__sql__sql_describe_table|mcp__sql__sql_search_columns|mcp__sql__sql_get_indexes|mcp__sql__sql_get_dependencies|mcp__sql__sql_script_table|mcp__sql__sql_list_databases|mcp__sql__sql_server_info|mcp__sql__sql_import_csv",
-        "hooks": [{"type": "command", "command": "bash .claude/hooks/guard-sql-destructive.sh", "statusMessage": "Checking SQL for destructive operations..."}]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/guard-sql-destructive.sh",
+            "statusMessage": "Checking SQL for destructive operations..."
+          }
+        ]
       }
     ],
     "PostToolUse": [
       {
         "matcher": "Edit|Write",
-        "hooks": [{"type": "command", "command": "bash .claude/hooks/update-frontmatter-date.sh"}]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/update-frontmatter-date.sh"
+          }
+        ]
       }
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ../home-dev/.claude/hooks/statusline.sh"
   }
 }
