@@ -70,7 +70,7 @@ Open a work session by syncing the local repo with remote and loading session co
    - **Ask:** "Git synced. Last working on: [topic]. What are we working on today?"
    - Load additional context **only after the user responds**: open-threads, related files — on demand based on their stated task, not upfront.
 
-8. **Set permission mode** — Ask: "Want hands-free mode? Run `/permissions bypassPermissions` now to skip all prompts." Wait for the user to confirm before proceeding.
+8. **Set permission mode** — Use the `AskUserQuestion` tool (not plain text) to ask: "Want hands-free mode? Run `/permissions bypassPermissions` now to skip all prompts." Claude cannot invoke slash commands itself, so if the user opts in, tell them to type `/permissions bypassPermissions` when convenient. Wait for the user's answer before proceeding.
 
 9. **Report ready state** — brief status after context is loaded.
 
