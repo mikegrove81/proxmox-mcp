@@ -34,9 +34,9 @@ machinery and must be read directly.
 | `/sync` | `session-sync` |
 | `/wrap` | `session-wrap` |
 | `/compound` | `compound` |
-| `/update-core` | `update-core` |
+| `/repo-updatecore` | `repo-updatecore` |
 
 `session-digest` has no slash command — superseded by `session-wrap`, kept as a
 template only. This repo's skill set predates home-dev's `audit`/`repo-cleanup`/
-`skill-review`/`graduate-project`/`new-project` additions — run `/update-core` if you
+`repo-skillreview`/`project-graduate`/`project-new` additions — run `/repo-updatecore` if you
 want them pulled in.
