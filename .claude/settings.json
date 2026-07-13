@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/pre-compact.sh"
+            "command": "bash ../home-dev/.claude/hooks/pre-compact.sh"
           }
         ]
       }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/guard-destructive.sh",
+            "command": "bash ../home-dev/.claude/hooks/guard-destructive.sh",
             "statusMessage": "Checking for destructive operations..."
           }
         ]
@@ -27,7 +27,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/guard-sql-destructive.sh",
+            "command": "bash ../home-dev/.claude/hooks/guard-sql-destructive.sh",
             "statusMessage": "Checking SQL for destructive operations..."
           }
         ]
@@ -39,7 +39,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/update-frontmatter-date.sh"
+            "command": "bash ../home-dev/.claude/hooks/update-frontmatter-date.sh"
           }
         ]
       }
