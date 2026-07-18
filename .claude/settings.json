@@ -1,4 +1,7 @@
 {
+  "permissions": {
+    "allow": ["Read"]
+  },
   "hooks": {
     "PreCompact": [
       {
@@ -6,7 +9,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ../home-dev/.claude/hooks/pre-compact.sh"
+            "command": "bash .claude/hooks/pre-compact.sh"
           }
         ]
       }
@@ -17,7 +20,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ../home-dev/.claude/hooks/guard-destructive.sh",
+            "command": "bash .claude/hooks/guard-destructive.sh",
             "statusMessage": "Checking for destructive operations..."
           }
         ]
@@ -27,8 +30,18 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ../home-dev/.claude/hooks/guard-sql-destructive.sh",
+            "command": "bash .claude/hooks/guard-sql-destructive.sh",
             "statusMessage": "Checking SQL for destructive operations..."
+          }
+        ]
+      },
+      {
+        "matcher": "Read|Edit|Write|Glob|Grep",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/guard-protected-paths.sh",
+            "statusMessage": "Checking protected paths..."
           }
         ]
       }
@@ -39,14 +52,30 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ../home-dev/.claude/hooks/update-frontmatter-date.sh"
+            "command": "bash .claude/hooks/update-frontmatter-date.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/stop-self-improve.sh"
           }
         ]
       }
     ]
   },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "ecc@ecc": true
+  },
   "statusLine": {
     "type": "command",
-    "command": "bash ../home-dev/.claude/hooks/statusline.sh"
+    "command": "bash .claude/hooks/statusline.sh"
   }
 }
+
