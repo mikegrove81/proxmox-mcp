@@ -13,6 +13,9 @@ location with these rules before acting.
 If a bare name is ambiguous within the current repo (matches more than one
 subfolder), ask which one — do not guess.
 
+If a bare name doesn't clearly exist locally, ask the user for the full path —
+do not search the entire system or assume it's at the fleet root.
+
 ## `_RepoWork` Is Reference-Only
 
 `C:\Repo\_RepoWork` (gpg-development and its work-family repos) is **read-only**.
