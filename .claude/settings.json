@@ -1,7 +1,4 @@
 {
-  "permissions": {
-    "allow": ["Read"]
-  },
   "hooks": {
     "PreCompact": [
       {
@@ -15,6 +12,16 @@
       }
     ],
     "PreToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/allow-read-for-plan.sh",
+            "statusMessage": "Checking read request..."
+          }
+        ]
+      },
       {
         "matcher": "Bash",
         "hooks": [
