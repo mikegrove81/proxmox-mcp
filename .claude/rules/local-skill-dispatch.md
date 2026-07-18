@@ -34,9 +34,11 @@ machinery and must be read directly.
 | `/sync` | `session-sync` |
 | `/wrap` | `session-wrap` |
 | `/compound` | `compound` |
-| `/repo-updatecore` | `repo-updatecore` |
 
 `session-digest` has no slash command — superseded by `session-wrap`, kept as a
-template only. This repo's skill set predates home-dev's `audit`/`repo-cleanup`/
-`repo-skillreview`/`project-graduate`/`project-new` additions — run `/repo-updatecore` if you
-want them pulled in.
+template only.
+
+Fleet-management commands (`/project-new`, `/project-graduate`, `/project-deprecate`,
+`/project-purge`, `/repo-updatecore`, `/audit`, `/repo-cleanup`, `/repo-skillreview`,
+`/childreview`, `/sync-from-gpg`, `/archive-memory`) are home-dev-only and do not
+apply here.
