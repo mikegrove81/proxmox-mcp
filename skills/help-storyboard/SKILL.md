@@ -1,5 +1,5 @@
 ---
-name: storyboard-creator
+name: help-storyboard
 description: Create self-contained visual storyboards showing feature flows and workflows
 categories:
   - documentation
@@ -17,4 +17,4 @@ source: home-dev
 
 > **Wrapper skill** - source of truth is in home-dev.
 
-Read and follow `../home-dev/skills/storyboard-creator/SKILL.md` in the context of THIS repo.
+Read and follow `../home-dev/skills/help-storyboard/SKILL.md` in the context of THIS repo.

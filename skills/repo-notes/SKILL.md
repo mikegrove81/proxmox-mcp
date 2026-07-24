@@ -1,5 +1,5 @@
 ---
-name: notes
+name: repo-notes
 description: "Process a repo's notes/ folder (punchlist, todos, ideas). Use when the user says '/notes', 'process the notes', 'process the punchlist', 'process 1-4', 'process todos 1-3', 'work the punch list', 'create a plan for idea #2', or otherwise names punchlist/todos/ideas items to act on. Executes and prunes actionable punchlist/todo items, routes ideas to plan-for-subagent, and annotates blocked items."
 categories:
   - workflow
@@ -17,4 +17,4 @@ source: home-dev
 
 > **Wrapper skill** - source of truth is in home-dev.
 
-Read and follow `../home-dev/skills/notes/SKILL.md` in the context of THIS repo.
+Read and follow `../home-dev/skills/repo-notes/SKILL.md` in the context of THIS repo.
