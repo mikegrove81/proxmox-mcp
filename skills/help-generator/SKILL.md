@@ -1,6 +1,6 @@
 ---
 name: help-generator
-description: Generate comprehensive help documentation from minimal feature YAML
+description: Generate production-ready help HTML from minimal feature YAML for web and desktop apps
 source: home-dev
 ---
 

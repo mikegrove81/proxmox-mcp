@@ -13,7 +13,7 @@ summary: Generate interactive HTML storyboards that illustrate step-by-step feat
 source: home-dev
 ---
 
-# Storyboard Creator
+# Storyboard Creator Skill
 
 > **Wrapper skill** - source of truth is in home-dev.
 
