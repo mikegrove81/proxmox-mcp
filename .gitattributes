@@ -1,5 +1,14 @@
+# Normalize line endings: text stored as LF in the repo, checked out native.
+# Stops phantom CRLF/LF churn in `git status` on Windows.
 * text=auto
-*.py text eol=lf
-*.json text eol=lf
-*.md text eol=lf
-*.txt text eol=lf
+
+# Files read by bash/MSYS - MUST be LF everywhere (a trailing \r breaks
+# shell parsing and guard-hook value matching), even on a Windows checkout.
+*.sh   text eol=lf
+*.conf text eol=lf
+
+# Windows-native scripts
+*.bat text eol=crlf
+
+# Binary - never touch
+*.zip binary
