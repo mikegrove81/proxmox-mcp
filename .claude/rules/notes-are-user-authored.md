@@ -1,6 +1,6 @@
 # Notes Files Are Always User-Authored
 
-Mike adds items to `notes/` files (`punchlist.md`, `todos.md`, `ideas.md`, and
+Mike adds items to `notes/` files (`punchlist.md`, `ideas.md`, `questions.md`, and
 anything else under `notes/`) ad hoc, between sessions and mid-session, so he
 doesn't forget them. **Any uncommitted change to a file under `notes/` is always
 his own edit.** Treat it as valid, expected, and already-authorized to commit.

@@ -1,15 +1,15 @@
 ---
 name: repo-notes
-description: "Process a repo's notes/ folder (punchlist, todos, ideas). Use when the user says '/repo-notes', 'process the notes', 'process the punchlist', 'process 1-4', 'process todos 1-3', 'work the punch list', 'create a plan for idea #2', or otherwise names punchlist/todos/ideas items to act on. Executes and prunes actionable punchlist/todo items, routes ideas to plan-for-subagent, and annotates blocked items."
+description: "Process a repo's notes/ folder (punchlist, ideas). Use when the user says '/repo-notes', 'process the notes', 'process the punchlist', 'process 1-4', 'graduate idea #2', 'process ideas 1-4', or otherwise names punchlist/ideas items to act on. Fixes and prunes punchlist items (logging each fix to the changelog), and graduates ideas into the roadmap (spec + ROADMAP entry, deleting the raw idea). Defers to roadmap-source-of-truth.md for the notes -> roadmap -> changelog model."
 categories:
   - workflow
 tags:
   - notes
   - punchlist
-  - todos
   - ideas
   - process-notes
-summary: "Per-repo notes processor: parses a bucket (punchlist/todos/ideas) plus a range, executes and prunes punchlist/todo items with prune-on-success, routes ideas to plan-for-subagent, and annotates blocked items in place."
+  - roadmap
+summary: "Per-repo notes processor: fixes+prunes punchlist items and logs each to Roadmap/CHANGELOG.md; graduates ideas into Roadmap/ROADMAP.md (spec'ing non-trivial ones into Roadmap/Specs/) and deletes the raw idea. Processed items leave notes/ entirely; blocked items are annotated in place."
 source: home-dev
 ---
 

@@ -11,14 +11,14 @@ When accessing memory files, follow these rules.
 
 If this is the first memory file access in this session, execute the full Session Start Sequence:
 1. Identify the user — check `git config user.name`, map to team profile in CLAUDE.md
-2. Read `.claude/memory/working-state.md` first
+2. Read the **Now** bucket of `Roadmap/ROADMAP.md` first — this is "what's next" (`working-state.md` is retired; see `.claude/rules/roadmap-source-of-truth.md`)
 3. Scan frontmatter of `.claude/memory/` for files matching current task
 4. Follow "related" links from loaded memory files (one hop)
 5. Check `.claude/memory/open-threads.md` for relevant pending items
 
 ## Write Rules
 
-- working-state.md is ephemeral: OVERWRITE each session, do not append
+- `working-state.md` is retired: "what's next" lives in the `Roadmap/ROADMAP.md` Now bucket, not in memory
 - open-threads.md is persistent: add, update, and move items between Active/Completed/Dropped tables
 - Session digests go in `.claude/memory/digests/` with YYYY-MM-DD.md naming
 - All memory files must have YAML frontmatter: a `title`/`name`, a `type` reflecting the file's role (`memory`, `user`, `feedback`, `reference`), a `description`/`summary`, and either `updated` or `originSessionId`

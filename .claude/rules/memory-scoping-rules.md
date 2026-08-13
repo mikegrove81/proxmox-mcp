@@ -1,6 +1,6 @@
 # Memory Scoping Rules
 
-When writing to working-state.md, open-threads.md, or session digests (during /wrap, /sync, or any memory update):
+When writing to `Roadmap/ROADMAP.md`, `Roadmap/CHANGELOG.md`, open-threads.md, or session digests (during /wrap, /sync, or any memory/roadmap update; `working-state.md` is retired):
 
 **Content must be scoped to THIS repo only.**
 
