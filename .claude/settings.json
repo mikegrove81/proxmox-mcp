@@ -5,6 +5,6 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "bash ../home-dev/.claude/hooks/statusline.sh"
+    "command": "bash .claude/hooks/statusline.sh"
   }
 }
